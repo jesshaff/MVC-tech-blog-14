@@ -18,7 +18,7 @@
     <div class='container-fluid d-flex flex-column align-items-center blogPostsContainer'> 
         {{#each mappedBlogPosts}}
             <div class='blogPost'>
-                <h2 class='blogTitle text-white bg-secondary'>{{this.title}}</h2>
+                <h2 class='blogTitle text-white bg-dark'>{{this.title}}</h2>
                 <p class='blogContent fw-bold'>{{this.content}}</p>
                 <p class='fst-italic'>Posted by: {{this.user.name}} on {{this.date_created}} </p>
                 <p class=''>Blog Id: {{this.id}}</p>
