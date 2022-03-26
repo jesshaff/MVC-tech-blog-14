@@ -1,0 +1,43 @@
+<div class='container-fluid d-flex flex-column align-items-center'>
+
+    {{#unless logged_in}}
+       <div>
+        <a href="../login">Login</a>
+        <a href="../createuser">Create Account</a>
+       </div>
+    {{/unless}}
+    {{#if logged_in}}
+    <div>
+        <a class='text-decoration-none fw-bolder m-2' href='../api/blog/createblog'>Create Blog</a>
+        <a class='text-decoration-none fw-bolder m-2' href='../api/blog/deleteblog'>Delete Blog</a>
+        <a class='text-decoration-none fw-bolder m-2' href='../api/blog/updateblog'>Update Blog</a>
+        <a class='text-decoration-none fw-bolder m-2' href='../logout'>Logout</a>
+    </div>  
+    {{/if}}
+    
+    <div class='container-fluid d-flex flex-column align-items-center blogPostsContainer'> 
+        {{#each mappedBlogPosts}}
+            <div class='blogPost'>
+                <h2 class='blogTitle text-white bg-secondary'>{{this.title}}</h2>
+                <p class='blogContent fw-bold'>{{this.content}}</p>
+                <p class='fst-italic'>Posted by: {{this.user.name}} on {{this.date_created}} </p>
+                <p class=''>Blog Id: {{this.id}}</p>
+                <input class='commentInput' id='{{this.id}}_comment'></input>
+                <button class='addCommentBtn button' id= '{{this.id}}'>Add Comment</button>
+
+                {{#each this.Comments}}
+                    <div class='blogComments'>
+                        <p>{{this.comment}}</p>   
+                    </div>
+                {{/each}}
+
+            </div>
+        {{/each}}
+    </div>
+
+</div>
+
+
+
+<script src="./js/homepage.js"></script>
+<script src="./js/addComment.js"></script>

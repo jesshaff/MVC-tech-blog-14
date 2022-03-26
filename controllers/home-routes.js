@@ -1,62 +1,63 @@
-const router = require('express').Router();
-const { Post, Comment, User } = require('../models/');
+const router = require("express").Router();
+const { User, Blog, Comment } = require("../models");
 
-// get all posts for homepage
-router.get('/', async (req, res) => {
+
+
+router.get("/", async (req, res) => {
   try {
-    const postData = await Post.findAll({
-      include: [User],
-    });
 
-    const posts = postData.map((post) => post.get({ plain: true }));
-
-    res.render('all-posts', { posts });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// get single post
-router.get('/post/:id', async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        User,
-        {
-          model: Comment,
-          include: [User],
+    let allBlogPosts = await Blog.findAll({
+      include: [{
+        model: User,
+        attributes: { exclude: ["password"] },
         },
-      ],
+        {
+        model: Comment, 
+        }],
+      order: [['id', 'DESC']],
     });
 
-    if (postData) {
-      const post = postData.get({ plain: true });
+    let mappedBlogPosts = await allBlogPosts.map((blog) => {
+      return blog.get({ plain: true });
+    });
 
-      res.render('single-post', { post });
-    } else {
-      res.status(404).end();
-    }
+
+
+    console.log(JSON.stringify(mappedBlogPosts));
+
+
+
+    res.render("homepage", { mappedBlogPosts, logged_in: req.session.logged_in, });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
+router.get("/login", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/");
     return;
   }
 
-  res.render('login');
+  res.render("login");
 });
 
-router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
+router.get('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.redirect("/");
+    });
+  } else {
+    res.status(404).end();
   }
-
-  res.render('signup');
 });
+
+router.get("/createUser", (req, res) => {
+  try {
+    res.render("createUser");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
 
 module.exports = router;

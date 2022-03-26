@@ -1,17 +1,25 @@
 const router = require('express').Router();
-const { Comment } = require('../../models/');
-const withAuth = require('../../utils/auth');
+const { Comment } = require('../../models');
 
-router.post('/', withAuth, async (req, res) => {
-  try {
-    const newComment = await Comment.create({
-      ...req.body,
-      userId: req.session.userId,
-    });
-    res.json(newComment);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+router.post('/addcomment', (req, res) => {
+try {
+    const { blogId, blogInput} = req.body;
+
+    console.log(blogId)
+    console.log(blogInput)
+
+     const addComment = Comment.create({ comment: blogInput, blog_id: blogId });
+    if (!addComment) {
+        res.status(500).json('Couldn\'t add comment');
+    } else {
+        res.redirect('/');
+    }
+
+} catch (error) {
+    res.status(500).json(error);
+}
+    
+})
+
 
 module.exports = router;
