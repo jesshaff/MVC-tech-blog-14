@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const seedBlog = require('./blogData');
+const seedPost = require('./postData');
 const seedUser = require('./userData');
 const seedComment = require('./commentData');
 
@@ -10,7 +10,7 @@ const seedAll = async () => {
 
   console.log('Success: Uploaded User table')
 
-  await seedBlog();
+  await seedPost();
 
   console.log('Success: Uploaded Blog table')
 

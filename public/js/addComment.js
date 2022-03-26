@@ -7,17 +7,17 @@ buttons.forEach(button => {
   button.addEventListener('click', async (event) => {
     event.preventDefault();
 
-    const blogId = await event.target.id;
+    const postId = await event.target.id;
   
-    console.log(blogId)
+    console.log(postId)
 
-    let blogInput = document.getElementById(`${blogId}_comment`).value
+    let postInput = document.getElementById(`${postId}_comment`).value
 
-    console.log(blogInput);
+    console.log(postInput);
 
     fetch('/api/comment/addcomment', {
       method: 'POST',
-      body: JSON.stringify({blogInput, blogId}),
+      body: JSON.stringify({postInput, postId}),
       headers: { 'Content-Type': 'application/json' }
     });
 
