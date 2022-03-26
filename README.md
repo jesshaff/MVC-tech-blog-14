@@ -21,7 +21,9 @@ npm install
 ```
 
 ## Usage
-.env file will need to be create specific to users credentialsif repo is cloned to your device.
+[Heroku Deployed Application](https://gt-mvc-tech-blog-app.herokuapp.com/)
+<br>
+.env file will need to be create specific to users credentials if repo is cloned to your device.
 
 ## Contributing
 No contributions are needed at this time.
