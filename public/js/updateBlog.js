@@ -6,7 +6,7 @@ const loginFormHandler = async (event) => {
   
     if (id && content) {
 
-      const response = await fetch('/api/post/updatepost', {
+      const response = await fetch('/api/blog/updateblog', {
         method: 'POST',
         body: JSON.stringify({ id, content }),
         headers: { 'Content-Type': 'application/json' },
@@ -24,5 +24,5 @@ const loginFormHandler = async (event) => {
 
 
   document
-    .querySelector('.postForm')
+    .querySelector('.blogForm')
     .addEventListener('submit', loginFormHandler);

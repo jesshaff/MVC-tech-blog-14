@@ -2,29 +2,33 @@
   "name": "tech-blog",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coding-boot-camp/module-14-project-mvc.git"
+    "url": "git+https://github.com/jgarner828/Tech-Blog.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/coding-boot-camp/module-14-project-mvc/issues"
+    "url": "https://github.com/jgarner828/Tech-Blog/issues"
   },
-  "homepage": "https://github.com/coding-boot-camp/module-14-project-mvc#readme",
+  "homepage": "https://github.com/jgarner828/Tech-Blog#readme",
   "dependencies": {
-    "bcrypt": "^4.0.1",
-    "connect-session-sequelize": "^6.1.1",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.3",
-    "express-handlebars": "^3.1.0",
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.15",
-    "sequelize": "^5.22.5"
+    "sequelize": "^6.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

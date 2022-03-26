@@ -1,5 +1,6 @@
 /* Style sheet for view. */
 
+
 .blogPostsContainer {
     display: flex;
     flex-direction: column;
@@ -10,24 +11,24 @@
 
 .blogPost {
     outline: solid black 5px;
+    padding: 10px;
+    margin: 50px;
+}
+
+.blogTitle {
+    outline: solid grey 3px;
     padding: 5px;
     margin: 10px;
 }
 
-.blogTitle {
-    outline: solid rgba(131, 49, 49, 0.829) 3px;
-    padding: 3px;
-    margin: 3px;
-}
-
 .blogContent {
-    outline: solid rgba(131, 49, 49, 0.829) 3px;
-    padding: 3px;
-    margin: 3px;
+    outline: solid grey 3px;
+    padding: 5px;
+    margin: 10px;
 }
 
 .blogComments {
-    outline: solid rgba(131, 49, 49, 0.829) 1px;
-    padding: 3px;
-    margin: 3px;
+    outline: solid grey 1px;
+    padding: 5px;
+    margin: 10px;
 }

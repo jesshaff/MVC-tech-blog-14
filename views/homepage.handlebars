@@ -8,25 +8,25 @@
     {{/unless}}
     {{#if logged_in}}
     <div>
-        <a class='text-decoration-none text-warning fw-bolder m-2' href='../api/post/createPost'>Create Blog</a>
-        <a class='text-decoration-none text-warning fw-bolder m-2' href='../api/post/deletePost'>Delete Blog</a>
-        <a class='text-decoration-none text-warning fw-bolder m-2' href='../api/post/updatePost'>Update Blog</a>
+        <a class='text-decoration-none text-warning fw-bolder m-2' href='../api/blog/createblog'>Create Blog</a>
+        <a class='text-decoration-none text-warning fw-bolder m-2' href='../api/blog/deleteblog'>Delete Blog</a>
+        <a class='text-decoration-none text-warning fw-bolder m-2' href='../api/blog/updateblog'>Update Blog</a>
         <a class='text-decoration-none text-warning fw-bolder m-2' href='../logout'>Logout</a>
     </div>  
     {{/if}}
     
-    <div class='container-fluid d-flex flex-column align-items-center postPostsContainer'> 
+    <div class='container-fluid d-flex flex-column align-items-center blogPostsContainer'> 
         {{#each mappedBlogPosts}}
-            <div class='postPost'>
-                <h2 class='postTitle text-white bg-dark'>{{this.title}}</h2>
-                <p class='postContent fw-bold'>{{this.content}}</p>
+            <div class='blogPost'>
+                <h2 class='blogTitle text-warning bg-dark'>{{this.title}}</h2>
+                <p class='blogContent fw-bold'>{{this.content}}</p>
                 <p class='fst-italic'>Posted by: {{this.user.name}} on {{this.date_created}} </p>
                 <p class=''>Blog Id: {{this.id}}</p>
                 <input class='commentInput' id='{{this.id}}_comment'></input>
                 <button class='addCommentBtn button' id= '{{this.id}}'>Add Comment</button>
 
                 {{#each this.Comments}}
-                    <div class='postComments'>
+                    <div class='blogComments'>
                         <p>{{this.comment}}</p>   
                     </div>
                 {{/each}}

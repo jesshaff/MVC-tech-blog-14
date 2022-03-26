@@ -4,7 +4,7 @@ const loginFormHandler = async (event) => {
     const id = document.querySelector('#id').value.trim();
   
     if (id) {
-      const response = await fetch('/api/post/deletepost', {
+      const response = await fetch('/api/blog/deleteblog', {
         method: 'POST',
         body: JSON.stringify({ id }),
         headers: { 'Content-Type': 'application/json' },
@@ -24,5 +24,5 @@ const loginFormHandler = async (event) => {
 
 
   document
-    .querySelector('.postForm')
+    .querySelector('.blogForm')
     .addEventListener('submit', loginFormHandler);

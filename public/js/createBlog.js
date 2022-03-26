@@ -1,5 +1,3 @@
-console.log("createPost.js is running")
-
 const loginFormHandler = async (event) => {
     event.preventDefault();
   
@@ -11,7 +9,7 @@ const loginFormHandler = async (event) => {
       console.log('submitting title and content');
       console.log(title);
       console.log(content);
-      const response = await fetch('/api/post/addpost', {
+      const response = await fetch('/api/blog/addblog', {
         method: 'POST',
         body: JSON.stringify({ title, content }),
         headers: { 'Content-Type': 'application/json' },
@@ -27,6 +25,9 @@ const loginFormHandler = async (event) => {
   
 
 
+
+
+
   document
-    .querySelector('.postForm')
+    .querySelector('.blogForm')
     .addEventListener('submit', loginFormHandler);

@@ -1,30 +1,32 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Blog } = require('../../models');
 
-router.get('/createpost', (req, res) => {
+
+
+router.get('/createblog', (req, res) => {
     try {
-        res.render("createPost");
+        res.render("createBlog");
     } catch (error) {
         res.status(500).json(error);
     }
 })
 
-router.get('/updatepost', (req, res) => {
+router.get('/updateblog', (req, res) => {
     try {
-        res.render("updatePost");
+        res.render("updateBlog");
     } catch (error) {
         res.status(500).json(error);
     }
 })
 
 
-router.post('/updatepost', async (req, res) => {
+router.post('/updateblog', async (req, res) => {
     try {
         const { id, content } = req.body
-        console.log(`Updating Post number ${id}`);
+        console.log(`Updating Blog number ${id}`);
 
 
-        const checkUser = await Post.findByPk(id);
+        const checkUser = await Blog.findByPk(id);
 
         console.log(checkUser.user_id)
         console.log(req.session.user_id)
@@ -33,10 +35,10 @@ router.post('/updatepost', async (req, res) => {
 
         console.log(checkOwner)
         if(!checkOwner) {
-            res.status(500).json('Only the post creator may delete.')
+            res.status(500).json('Only the blog creator may delete.')
             return;
         } else {
-           Post.update({ content }, {where: { id }})
+           Blog.update({ content }, {where: { id }})
            res.redirect('/');
         }
         
@@ -46,15 +48,15 @@ router.post('/updatepost', async (req, res) => {
 })
 
 
-router.post('/addpost', async (req, res) => {
+router.post('/addblog', async (req, res) => {
     try {
-        console.log('inside addPost POST request');
+        console.log('inside addBlog POST request');
             const { title, content } = req.body;
             console.log(title);
             console.log(content);
-             const addPost = await Post.create({ title: title, content: content, user_id: req.session.user_id })
-             if(!addPost) {
-                 res.status(500).json('Couldn\'t add new post!');
+             const addBlog = await Blog.create({ title: title, content: content, user_id: req.session.user_id })
+             if(!addBlog) {
+                 res.status(500).json('Couldn\'t add new blog!');
              }
             res.status(200).json(req.body)
     } catch (error) {
@@ -63,9 +65,9 @@ router.post('/addpost', async (req, res) => {
     }
 })
 
-router.get('/deletepost', (req, res) => {
+router.get('/deleteblog', (req, res) => {
     try {
-        res.render("deletePost");
+        res.render("deleteBlog");
     } catch (error) {
         res.status(500).json(error)
     }
@@ -73,13 +75,13 @@ router.get('/deletepost', (req, res) => {
 
 
 
-router.post('/deletepost', async (req, res) => {
+router.post('/deleteblog', async (req, res) => {
     try {
         const { id } = req.body
-        console.log(`Deleting Post number ${id}`);
+        console.log(`Deleting Blog number ${id}`);
 
 
-        const checkUser = await Post.findByPk(id);
+        const checkUser = await Blog.findByPk(id);
 
         console.log(checkUser.user_id)
         console.log(req.session.user_id)
@@ -88,13 +90,13 @@ router.post('/deletepost', async (req, res) => {
 
         console.log(checkOwner)
         if(!checkOwner) {
-            res.status(500).json('Only the post creator may delete.')
+            res.status(500).json('Only the blog creator may delete.')
             return;
         } else {
-            console.log('trying to destroy Post ${id} ')
-                const destroyPost = await Post.destroy({ where: { id: id } })
-                        if(!destroyPost) {
-                            res.status(500).json('Post could not be deleted.')
+            console.log('trying to destroy Blog ${id} ')
+                const destroyBlog = await Blog.destroy({ where: { id: id } })
+                        if(!destroyBlog) {
+                            res.status(500).json('Blog could not be deleted.')
                             return;
                         }
         }

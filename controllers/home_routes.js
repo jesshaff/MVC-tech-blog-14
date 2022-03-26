@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../models");
+const { User, Blog, Comment } = require("../models");
 
 
 
 router.get("/", async (req, res) => {
   try {
 
-    let allPostPosts = await Post.findAll({
+    let allBlogPosts = await Blog.findAll({
       include: [{
         model: User,
         attributes: { exclude: ["password"] },
@@ -17,17 +17,17 @@ router.get("/", async (req, res) => {
       order: [['id', 'DESC']],
     });
 
-    let mappedPostPosts = await allPostPosts.map((post) => {
-      return post.get({ plain: true });
+    let mappedBlogPosts = await allBlogPosts.map((blog) => {
+      return blog.get({ plain: true });
     });
 
 
 
-    console.log(JSON.stringify(mappedPostPosts));
+    console.log(JSON.stringify(mappedBlogPosts));
 
 
 
-    res.render("homepage", { mappedPostPosts, logged_in: req.session.logged_in, });
+    res.render("homepage", { mappedBlogPosts, logged_in: req.session.logged_in, });
   } catch (err) {
     res.status(500).json(err);
   }
